@@ -1,0 +1,136 @@
+.navbar {
+  height: 64px;
+  background-color: #111827; /* Couleur sombre comme sur ton image */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  position: relative;
+  z-index: 10;
+}
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: #ff8000 !important;
+  letter-spacing: 2px;
+  margin-right: 2rem;
+  user-select: none;
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  width: 350px;
+  max-width: 100%;
+  padding: 0.7rem 1.2rem;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 1.08rem;
+  background: #f3f4f6;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.search-bar:focus {
+  border: 2px solid #ff8000;
+  background: #fff;
+  box-shadow: 0 0 0 2px #ffe0c2;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  position: relative;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 18px;
+  border: 2px solid #000;      /* Bordure noire */
+  background: #111;            /* Fond de bordure noir */
+  transition: background 0.2s;
+}
+
+/* .user-info:hover {
+  background: #232b3a;
+} */
+
+.user-name {
+  font-weight: 500;
+  color: #fff;
+  font-size: 1.08rem;
+  margin-left: 0.2rem;
+}
+
+.user-icon {
+  font-size: 2rem;
+  color: #ff8000;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  width: 170px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  z-index: 100;
+  color: #111827;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.user-dropdown li a,
+.user-dropdown li button {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #111827;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.user-dropdown li a:hover,
+.user-dropdown li button:hover {
+  background-color: #f3f4f6;
+}
+
+.user-dropdown li button {
+  width: 100%;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .navbar-center {
+    display: none;
+  }
+  .search-bar {
+    width: 100%;
+  }
+}

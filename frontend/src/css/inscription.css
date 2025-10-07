@@ -1,0 +1,294 @@
+/* src/css/inscription.css */
+
+/* --- Layout général --- */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem 0;
+  position: fixed;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.sidebar-logo {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 1rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+}
+
+.sidebar-menu li a,
+.sidebar-menu li button {
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  background: none;
+  font-size: 1rem;
+}
+
+.sidebar-menu li:hover {
+  background-color: #495057;
+  border-radius: 5px;
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.dropdown-menu li {
+  padding: 0.5rem 0;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+/* --- Main content --- */
+.main-content {
+  margin-left: 250px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Navbar --- */
+.navbar {
+  background-color: #fff;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar .user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.user-dropdown:hover .user-dropdown-content {
+  display: block;
+}
+
+.user-dropdown-content a {
+  color: #343a40;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.user-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* --- Formulaire inscription --- */
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.inscription-form {
+  max-width: 700px;
+  margin: 32px auto;
+  background: #fff;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(255,128,0,0.10);
+}
+
+.inscription-form h2,
+.form-title {
+  background: #ff8000;
+  color: #fff;
+  border-radius: 14px 14px 0 0;
+  padding: 22px 0 18px 0;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.form-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 0; /* On va gérer l'espacement via .form-group */
+}
+
+.inscription-form .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px; /* Ajoute de l'espace entre chaque champ */
+}
+
+.inscription-form label {
+  font-weight: 600;
+  margin-bottom: 7px;
+  font-size: 1.15rem;
+  color: #222;
+}
+
+.inscription-form input,
+.inscription-form select {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1.5px solid #e0e0e0;
+  font-size: 1.08rem;
+  background: #fafafa;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom: 2px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.inscription-form input:focus,
+.inscription-form select:focus {
+  border: 1.5px solid #ff8000;
+  background: #fff;
+  box-shadow: 0 0 0 2px #ffe0c2;
+}
+
+.inscription-form button,
+.btn-submit {
+  width: 100%;
+  padding: 15px 0;
+  background-color: #ff8000;
+  color: #fff;
+  border: none;
+  font-size: 1.25rem;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(255,128,0,0.10);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.inscription-form button:hover,
+.btn-submit:hover {
+  background-color: #e66c00;
+}
+
+.btn-retour {
+  background: #eee;
+  color: #333;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 15px 0;
+  margin-top: 30px;
+  border: none;
+  transition: background 0.2s;
+}
+
+.btn-retour:hover {
+  background: #ddd;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+  }
+
+  .inscription-form {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .navbar {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 700px) {
+  .inscription-form {
+    padding: 1.2rem 0.5rem;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .inscription-form .form-group {
+    margin-bottom: 18px; /* Un peu moins sur mobile */
+  }
+}
