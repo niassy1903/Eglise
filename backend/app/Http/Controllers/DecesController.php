@@ -95,4 +95,22 @@ class DecesController extends Controller
 
         return response()->json(['message'=>'Décès supprimé avec succès'],200);
     }
+
+     public function countDeces()
+    {
+        $total = Deces::count();
+        return response()->json(['deces' => $total]);
+    }
+
+    /**
+     * Statistiques mensuelles des décès
+     */
+    public function statsMensuelles()
+    {
+        $data = Deces::selectRaw('MONTH(date_deces) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->pluck('total','month');
+
+        return response()->json($data);
+    }
 }

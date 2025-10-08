@@ -89,4 +89,22 @@ class MariageController extends Controller
 
         return response()->json(['message'=>'Mariage supprimé avec succès'],200);
     }
+
+     public function countMariages()
+    {
+        $total = Mariage::count();
+        return response()->json(['mariages' => $total]);
+    }
+
+    /**
+     * Statistiques mensuelles des mariages
+     */
+    public function statsMensuelles()
+    {
+        $data = Mariage::selectRaw('MONTH(date_mariage) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->pluck('total','month');
+
+        return response()->json($data);
+    }
 }

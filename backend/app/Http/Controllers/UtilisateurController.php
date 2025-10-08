@@ -38,12 +38,10 @@ public function login(Request $request)
     // Générer un token temporaire (si pas encore Sanctum/JWT installé)
     $token = Str::random(60);
 
-    // Ici tu peux stocker le token dans la table utilisateurs ou tokens séparés si besoin
-    // $utilisateur->api_token = hash('sha256', $token);
-    // $utilisateur->save();
-
+    // Ajouter le rôle dans la réponse
     return response()->json([
         'utilisateur' => $utilisateur,
+        'role' => $utilisateur->role, // 👈 Ajout du rôle ici
         'token' => $token
     ], 200);
 }
@@ -142,4 +140,43 @@ public function login(Request $request)
         $utilisateur->delete();
         return response()->json(['message' => 'Utilisateur supprimé avec succès'], 204);
     }
+
+    
+    public function countAdmins()
+    {
+        $total = Utilisateur::where('role', 'admin')->count();
+        return response()->json(['admins' => $total]);
+    }
+
+    /**
+     * Nombre total de prêtres
+     */
+    public function countPretres()
+    {
+        $total = Utilisateur::where('role', 'pretre')->count();
+        return response()->json(['pretres' => $total]);
+    }
+
+    /**
+     * Statistiques mensuelles des utilisateurs par rôle
+     */
+    public function statsMensuelles()
+    {
+        $admins = Utilisateur::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->where('role', 'admin')
+            ->groupBy('month')
+            ->pluck('total','month');
+
+        $pretres = Utilisateur::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->where('role', 'pretre')
+            ->groupBy('month')
+            ->pluck('total','month');
+
+        return response()->json([
+            'admins' => $admins,
+            'pretres' => $pretres
+        ]);
+    }
+
+
 }

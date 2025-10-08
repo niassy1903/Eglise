@@ -45,3 +45,21 @@ Route::apiResource('deces', DecesController::class);
 
 
 Route::post('/login', [UtilisateurController::class, 'login']);
+
+
+// Utilisateurs
+Route::get('count/admins', [UtilisateurController::class, 'countAdmins']);
+Route::get('count/pretres', [UtilisateurController::class, 'countPretres']);
+Route::get('stats/utilisateurs', [UtilisateurController::class, 'statsMensuelles']);
+
+// Naissances
+Route::get('count/naissances', [NaissanceController::class, 'countNaissances']);
+Route::get('stats/naissances', [NaissanceController::class, 'statsMensuelles']);
+
+// Mariages
+Route::get('count/mariages', [MariageController::class, 'countMariages']);
+Route::get('stats/mariages', [MariageController::class, 'statsMensuelles']);
+
+// Décès
+Route::get('count/deces', [DecesController::class, 'countDeces']);
+Route::get('stats/deces', [DecesController::class, 'statsMensuelles']);

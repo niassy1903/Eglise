@@ -1,0 +1,75 @@
+.deces-form {
+  background: rgba(255,255,255,0.95);
+  padding: 2.5rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(30, 58, 138, 0.15);
+}
+
+.deces-form h2 {
+  background: #1e3a8a;
+  color: #fff;
+  border-radius: 14px 14px 0 0;
+  padding: 22px 0;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.deces-form .form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1e3a8a;
+}
+
+.deces-form input,
+.deces-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #e0e0e0;
+  font-size: 1rem;
+  background: #f3f4f6;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.deces-form input:focus,
+.deces-form select:focus {
+  border-color: #3b82f6;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
+}
+
+.btn-primary {
+  background-color: #1e3a8a;
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 0;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #3b82f6;
+}
+
+.btn-secondary {
+  background-color: #e0e7ff;
+  color: #1e3a8a;
+  border-radius: 12px;
+  padding: 12px 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #c7d2fe;
+}
+
+.text-success {
+  color: green;
+  font-weight: 500;
+  margin-bottom: 16px;
+}

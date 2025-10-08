@@ -1,42 +1,53 @@
+/* === TITRE DU DASHBOARD === */
 .dashboard-title {
   font-size: 2rem;
-  color: #333;
+  color: #1e3a8a; /* bleu foncé */
   margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
 }
 
+/* === CARDS === */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 3rem;
+  justify-content: center;
 }
 
 .card-item {
-  background: white;
+  background: #ffffff; /* blanc */
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   min-width: 220px;
   flex: 1;
-  transition: transform 0.2s ease;
+  max-width: 250px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
+  border-top: 4px solid #1e3a8a; /* barre bleu en haut */
 }
 
 .card-item:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-item h2 {
   font-size: 1.2rem;
-  color: #555;
+  color: #1e3a8a; /* texte bleu */
+  margin-bottom: 0.5rem;
 }
 
 .card-item p {
   font-size: 2rem;
-  color: #ff8000;
+  color: #3b82f6; /* bleu clair */
   margin-top: 0.5rem;
+  font-weight: 600;
 }
 
+/* === CHARTS === */
 .charts-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -44,13 +55,35 @@
 }
 
 .chart-card {
-  background: white;
+  background: #ffffff;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #1e3a8a; /* bande bleu à gauche */
 }
 
 .chart-card h3 {
-  color: #333;
+  color: #1e3a8a;
   margin-bottom: 1rem;
+}
+
+/* === MAIN CONTENT === */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  margin-left: 250px; /* largeur sidebar */
+  width: calc(100% - 250px);
+  padding: 20px;
+  background: linear-gradient(180deg, #f0f4ff 0%, #ffffff 100%); /* dégradé bleu clair → blanc */
+}
+
+/* === BOUTONS GRAPHIQUES === */
+.recharts-tooltip-wrapper {
+  background: #1e3a8a;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.9rem;
 }

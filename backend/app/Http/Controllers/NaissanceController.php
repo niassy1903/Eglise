@@ -93,4 +93,23 @@ class NaissanceController extends Controller
 
         return response()->json(['message'=>'Naissance supprimée avec succès'],200);
     }
+
+    public function countNaissances()
+    {
+        $total = Naissance::count();
+        return response()->json(['naissances' => $total]);
+    }
+
+    /**
+     * Statistiques mensuelles des naissances
+     */
+    public function statsMensuelles()
+    {
+        $data = Naissance::selectRaw('MONTH(date_naissance) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->pluck('total','month');
+
+        return response()->json($data);
+    }
+
 }

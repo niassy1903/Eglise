@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../composants/Sidebar";
 import Navbar from "../composants/Navbar";
-import { createUtilisateur } from "../api/api";
-import Swal from "sweetalert2"; // 👈 import SweetAlert2
+import { getUtilisateur, updateUtilisateur } from "../api/api";
+import Swal from "sweetalert2";
 import "../css/inscription.css";
 
-const Inscription = () => {
+const Edit = () => {
   const navigate = useNavigate();
+  const { id } = useParams(); // récupère l'id depuis l'URL
+
   const [form, setForm] = useState({
     prenom: "",
     nom: "",
@@ -24,6 +26,19 @@ const Inscription = () => {
     nom_maman: "",
   });
 
+  // Fetch des données de l'utilisateur
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getUtilisateur(id);
+        setForm(res.data);
+      } catch (err) {
+        console.error("Erreur lors du chargement :", err);
+      }
+    };
+    fetchData();
+  }, [id]);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -31,29 +46,25 @@ const Inscription = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createUtilisateur(form);
+      await updateUtilisateur(id, form);
 
-      // ✅ SweetAlert succès
       Swal.fire({
         icon: "success",
-        title: "Utilisateur créé avec succès !",
+        title: "Utilisateur mis à jour avec succès !",
         showConfirmButton: false,
-        timer: 5000, // disparaît après 5 secondes
+        timer: 3000,
         timerProgressBar: true,
       });
 
-      // redirection après 5s
-      setTimeout(() => navigate("/utilisateurs"), 5000);
+      setTimeout(() => navigate("/utilisateurs"), 3000);
     } catch (err) {
       console.error(err);
-
-      // ✅ SweetAlert erreur
       Swal.fire({
         icon: "error",
-        title: "Erreur lors de la création de l'utilisateur",
+        title: "Erreur lors de la mise à jour",
         text: err.response?.data?.message || "",
         showConfirmButton: false,
-        timer: 5000,
+        timer: 3000,
         timerProgressBar: true,
       });
     }
@@ -67,7 +78,7 @@ const Inscription = () => {
         <div className="content p-4">
           <div className="container">
             <div className="inscription-form shadow rounded bg-white p-4">
-              <h2 className="form-title mb-4">Formulaire d'Inscription</h2>
+              <h2 className="form-title mb-4">Modifier l'utilisateur</h2>
               <form onSubmit={handleSubmit}>
                 {/* ==== Champs du formulaire ==== */}
                 <div className="row">
@@ -79,7 +90,6 @@ const Inscription = () => {
                       value={form.prenom}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="Saisissez votre prénom"
                       required
                     />
                   </div>
@@ -91,13 +101,12 @@ const Inscription = () => {
                       value={form.nom}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="Saisissez votre nom"
                       required
                     />
                   </div>
                 </div>
 
-                {/* ==== Autres champs ==== */}
+                {/* ==== Adresse / Téléphone ==== */}
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <label className="form-label">Adresse</label>
@@ -107,7 +116,6 @@ const Inscription = () => {
                       value={form.adresse}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="Saisissez votre adresse"
                     />
                   </div>
                   <div className="col-md-6 mb-3">
@@ -118,7 +126,6 @@ const Inscription = () => {
                       value={form.telephone}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="Saisissez votre téléphone"
                     />
                   </div>
                 </div>
@@ -133,7 +140,6 @@ const Inscription = () => {
                       value={form.email}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="Saisissez votre email"
                       required
                     />
                   </div>
@@ -145,8 +151,6 @@ const Inscription = () => {
                       value={form.mot_de_passe}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="Saisissez votre mot de passe"
-                      required
                     />
                   </div>
                 </div>
@@ -245,7 +249,7 @@ const Inscription = () => {
                 {/* ==== Boutons ==== */}
                 <div className="d-flex justify-content-between gap-3">
                   <button type="submit" className="btn btn-primary flex-fill">
-                    Enregistrer
+                    Mettre à jour
                   </button>
                   <button
                     type="button"
@@ -264,4 +268,4 @@ const Inscription = () => {
   );
 };
 
-export default Inscription;
+export default Edit;

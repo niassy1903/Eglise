@@ -46,5 +46,25 @@ export const createDeces = (data) => api.post("/deces", data);
 export const updateDeces = (id, data) => api.put(`/deces/${id}`, data);
 export const deleteDeces = (id) => api.delete(`/deces/${id}`);
 
+
+// ----------------- STATISTIQUES / COMPTES -----------------
+
+// ----------------- UTILISATEURS -----------------
+export const countAdmins = () => api.get("/count/admins");
+export const countPretres = () => api.get("/count/pretres");
+export const statsUtilisateurs = () => api.get("/stats/utilisateurs");
+
+// ----------------- NAISSANCES -----------------
+export const countNaissances = () => api.get("/count/naissances");
+export const statsNaissances = () => api.get("/stats/naissances");
+
+// ----------------- MARIAGES -----------------
+export const countMariages = () => api.get("/count/mariages");
+export const statsMariages = () => api.get("/stats/mariages");
+
+// ----------------- DECES -----------------
+export const countDeces = () => api.get("/count/deces");
+export const statsDeces = () => api.get("/stats/deces");
+
 // Export de l'instance pour requêtes personnalisées si nécessaire
 export default api;
