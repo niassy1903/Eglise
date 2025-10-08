@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../api/api"; // ta fonction d'appel API
+import { login } from "../api/api"; // 👈 import de la fonction login
 import "../css/login.css";
 
 function Login() {
@@ -14,16 +14,12 @@ function Login() {
     setError("");
 
     try {
-      // 🔹 Appel à ton backend (POST /login)
-      const res = await login(email, motDePasse);
+      const res = await login(email, motDePasse); // 👈 appel de la fonction login
       const { utilisateur, token } = res.data;
 
-      // 🔹 Sauvegarder dans le localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
-      localStorage.setItem("role", utilisateur.role); // 👈 sauvegarde du rôle
 
-      // 🔹 Redirection vers le tableau de bord
       navigate("/dashboard");
     } catch (err) {
       console.error(err);
