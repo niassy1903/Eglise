@@ -265,7 +265,7 @@ const Deces = () => {
                   <button
                     type="button"
                     className="btn btn-secondary flex-fill"
-                    onClick={() => navigate("/deces")}
+                    onClick={() => navigate("/dashboard")}
                   >
                     Retour
                   </button>

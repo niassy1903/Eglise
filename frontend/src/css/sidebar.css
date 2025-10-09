@@ -120,4 +120,20 @@
     padding: 8px 12px;
     font-size: 0.9rem;
   }
+  .sidebar-logo {
+    font-size: 1.2rem;
+  }
+  .logo-eglise {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .hamburger {
+    font-size: 1.5rem;
+    top: 10px;
+    left: 10px;
+  }
+
+  
+  
 }

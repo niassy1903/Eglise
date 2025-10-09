@@ -186,4 +186,78 @@
   .user-name {
     display: none;
   }
+  .user-info {
+    padding: 0.3rem;
+  }
+  .user-info:hover {
+    transform: none;
+  }
+  .navbar-dropdown-menu {
+    right: -20px;
+  }
+  .navbar-dropdown-menu li a,
+  .navbar-dropdown-menu li button {
+    font-size: 0.9rem;
+  }
+  .mobile-menu {
+    width: 200px;
+  }
+  .mobile-menu li {
+    margin-bottom: 0.8rem;
+  }
+  .mobile-menu a {
+    font-size: 0.9rem;
+  }
+
+  .navbar {
+    padding: 0 1rem;
+  }
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .form-control {
+    width: 200px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  .navbar-dropdown-menu {
+    width: 150px;
+  }
+  .navbar-dropdown-menu li a,
+  .navbar-dropdown-menu li button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  .hamburger {
+    font-size: 1.5rem;
+  }
+  .user-info {
+    padding: 0.2rem 0.5rem;
+  }
+  .user-info:hover {
+    transform: none;
+  }
+  .user-name {
+    display: none;
+  }
+  .logo-eglise {
+    width: 30px;
+    height: 30px;
+  }
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .navbar-dropdown-menu {
+    right: -10px;
+  }
+
+  .navbar-dropdown-menu li a,
+  .navbar-dropdown-menu li button {
+    font-size: 0.8rem;
+  }
+
+
+  
 }

@@ -233,7 +233,7 @@ const Mariages = () => {
                   <button
                     type="button"
                     className="btn btn-secondary flex-fill"
-                    onClick={() => navigate("/mariages")}
+                    onClick={() => navigate("/dashboard")}
                   >
                     Retour
                   </button>

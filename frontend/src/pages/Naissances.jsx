@@ -24,8 +24,8 @@ const Naissances = () => {
 
   // Récupérer les prêtres pour le select
   useEffect(() => {
-    getUtilisateurs().then(res => {
-      setPretreList(res.data.filter(u => u.role === "pretre"));
+    getUtilisateurs().then((res) => {
+      setPretreList(res.data.filter((u) => u.role === "pretre"));
     });
   }, []);
 
@@ -36,65 +36,51 @@ const Naissances = () => {
   // Fonction pour générer le PDF
   const generatePDF = () => {
     const doc = new jsPDF();
-    // Bordure
-    doc.setLineWidth(1);
+
+    // Bordure du document
+    doc.setLineWidth(0.5);
     doc.rect(10, 10, 190, 277);
 
-    // Titre
-    doc.setFontSize(22);
-    doc.setFont("helvetica", "bold");
-    doc.text("Certificat de Naissance", 105, 25, { align: "center" });
-
-    // Sections
+    // En-tête : "ETAT CIVIL" et "REPUBLIQUE DU SENEGAL"
     doc.setFontSize(16);
-    doc.setFont("helvetica", "normal");
-    let y = 50;
-
-    doc.text("Informations sur l'enfant", 20, y); y += 10;
     doc.setFont("helvetica", "bold");
-    doc.text(`Nom : ${form.enfant_nom}`, 20, y); y += 10;
-    doc.text(`Prénom : ${form.enfant_prenom}`, 20, y); y += 10;
-    doc.text(`Date de naissance : ${form.date_naissance}`, 20, y); y += 10;
-    doc.text(`Lieu de naissance : ${form.lieu_naissance}`, 20, y); y += 15;
+    doc.text("REPUBLIQUE DU SENEGAL", 105, 20, { align: "center" });
+    doc.setFontSize(14);
+    doc.text("ETAT CIVIL", 105, 30, { align: "center" });
 
+    // Titre : "EXTRAIT DU REGISTRE DES ACTES DE NAISSANCE"
+    doc.setFontSize(12);
+    doc.text("EXTRAIT DU REGISTRE DES ACTES DE NAISSANCE", 105, 45, { align: "center" });
+
+    // Informations de l'enfant
+    doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
-    doc.text("Informations sur le père", 20, y); y += 10;
-    doc.setFont("helvetica", "bold");
-    doc.text(`Nom : ${form.pere_nom}`, 20, y); y += 10;
-    doc.text(`Prénom : ${form.pere_prenom}`, 20, y); y += 15;
+    doc.text(`N° de l'acte : ${Math.floor(Math.random() * 1000)}`, 20, 60);
+    doc.text(`Nom et Prénom(s) de l'enfant : ${form.enfant_nom} ${form.enfant_prenom}`, 20, 70);
+    doc.text(`Né(e) le : ${form.date_naissance} à ${form.lieu_naissance}`, 20, 80);
 
-    doc.setFont("helvetica", "normal");
-    doc.text("Informations sur la mère", 20, y); y += 10;
-    doc.setFont("helvetica", "bold");
-    doc.text(`Nom : ${form.mere_nom}`, 20, y); y += 10;
-    doc.text(`Prénom : ${form.mere_prenom}`, 20, y); y += 15;
+    // Informations des parents
+    doc.text(`Père : ${form.pere_nom} ${form.pere_prenom}`, 20, 100);
+    doc.text(`Mère : ${form.mere_nom} ${form.mere_prenom}`, 20, 110);
 
-    const selectedPretre = pretreList.find(p => p.id === form.pretre_id);
+    // Informations du prêtre
+    const selectedPretre = pretreList.find((p) => p.id === form.pretre_id);
     if (selectedPretre) {
-      doc.setFont("helvetica", "normal");
-      doc.text("Prêtre ayant enregistré la naissance", 20, y); y += 10;
-      doc.setFont("helvetica", "bold");
-      doc.text(`${selectedPretre.nom} ${selectedPretre.prenom}`, 20, y); y += 10;
+      doc.text(`Prêtre ayant enregistré la naissance : ${selectedPretre.nom} ${selectedPretre.prenom}`, 20, 130);
     }
 
     // Pied de page
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
-    doc.text(
-      `Document officiel généré le ${new Date().toLocaleDateString()}`,
-      105,
-      280,
-      { align: "center" }
-    );
+    doc.setFontSize(8);
+    doc.text(`Document officiel généré le ${new Date().toLocaleDateString()}`, 105, 280, { align: "center" });
 
-    doc.save(`${form.enfant_nom}_${form.enfant_prenom}_certificat.pdf`);
+    // Sauvegarder le PDF
+    doc.save(`${form.enfant_nom}_${form.enfant_prenom}_extrait_naissance.pdf`);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await createNaissance(form);
-
       // SweetAlert après création
       Swal.fire({
         icon: "success",
@@ -110,7 +96,6 @@ const Naissances = () => {
           generatePDF();
         }
       });
-
       // Reset du formulaire
       setForm({
         enfant_nom: "",
@@ -171,7 +156,6 @@ const Naissances = () => {
                     />
                   </div>
                 </div>
-
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <label className="form-label">Date de naissance</label>
@@ -195,7 +179,6 @@ const Naissances = () => {
                     />
                   </div>
                 </div>
-
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <label className="form-label">Nom du père</label>
@@ -218,7 +201,6 @@ const Naissances = () => {
                     />
                   </div>
                 </div>
-
                 <div className="row mb-4">
                   <div className="col-md-6 mb-3">
                     <label className="form-label">Nom de la mère</label>
@@ -241,7 +223,6 @@ const Naissances = () => {
                     />
                   </div>
                 </div>
-
                 <div className="mb-4">
                   <label className="form-label">Prêtre</label>
                   <select
@@ -259,7 +240,6 @@ const Naissances = () => {
                     ))}
                   </select>
                 </div>
-
                 <div className="d-flex justify-content-between gap-3">
                   <button type="submit" className="btn btn-primary flex-fill">
                     Enregistrer
@@ -267,7 +247,7 @@ const Naissances = () => {
                   <button
                     type="button"
                     className="btn btn-secondary flex-fill"
-                    onClick={() => navigate("/naissances")}
+                    onClick={() => navigate("/dashboard")}
                   >
                     Retour
                   </button>
